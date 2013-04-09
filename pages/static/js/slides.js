@@ -83,14 +83,6 @@ function show(num, direction) {
   relateNode.addClass(direction + '-slide-out');
 }
 
-function cleanState(node) {
-  node.hide().removeClass('current-page');
-}
-
-function currentState(node) {
-  node.show().addClass('current-page');
-}
-
 function makeURL(num) {
   var url = location.href;
   url = url.indexOf('?') ? url.split('?')[0] : url;
