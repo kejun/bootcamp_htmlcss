@@ -6,6 +6,8 @@ html, body {
   overflow:hidden;
   background: #333;
   font:normal 16px/1.6 helivetica, arial, sans-serif;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
 }
 
 .page article{
@@ -137,39 +139,43 @@ p {
 .next-slide-in {
   display: block;
   -webkit-animation: next_slide_in .5s ease-out;
+  -webkit-transform-origin:0 50%;
 }
 
 .next-slide-out {
   display: block;
   -webkit-animation: next_slide_out .5s ease-out;
+  -webkit-transform-origin:100% 50%;
 }
 
 .prev-slide-in {
   display: block;
   -webkit-animation: prev_slide_in .5s ease-out;
+  -webkit-transform-origin:100% 50%;
 }
 
 .prev-slide-out {
   display: block;
   -webkit-animation: prev_slide_out .5s ease-out;
+  -webkit-transform-origin:0 50%;
 }
 
 
 @-webkit-keyframes next_slide_in {
   from {
-    -webkit-transform: translate(100%, 0) scale(1) translateZ(0);
+    -webkit-transform: translate(100%, 0) scale(1) translateZ(0) rotateY(30deg);
   }
   to {
-    -webkit-transform: translate(0, 0) scale(1) translateZ(0);
+    -webkit-transform: translate(0, 0) scale(1) translateZ(0) rotateY(0deg);
   }
 }
 
 @-webkit-keyframes next_slide_out {
   from {
-    -webkit-transform: translate(0, 0) scale(1) translateZ(0);
+    -webkit-transform: translate(0, 0) scale(1) translateZ(0) rotateY(0);
   }
   to {
-    -webkit-transform: translate(-100%, 0) scale(1) translateZ(0);
+    -webkit-transform: translate(-100%, 0) scale(1) translateZ(0) rotateY(-30deg);
   }
 }
 
@@ -177,18 +183,18 @@ p {
 
 @-webkit-keyframes prev_slide_in {
   from {
-    -webkit-transform: translate(-100%, 0) scale(1) translateZ(0);
+    -webkit-transform: translate(-100%, 0) scale(1) translateZ(0) rotateY(-30deg);
   }
   to {
-    -webkit-transform: translate(0, 0) scale(1) translateZ(0);
+    -webkit-transform: translate(0, 0) scale(1) translateZ(0) rotateY(0);
   }
 }
 
 @-webkit-keyframes prev_slide_out {
   from {
-    -webkit-transform: translate(0, 0) scale(1) translateZ(0);
+    -webkit-transform: translate(0, 0) scale(1) translateZ(0) rotateY(0);
   }
   to {
-    -webkit-transform: translate(100%, 0) scale(1) translateZ(0);
+    -webkit-transform: translate(100%, 0) scale(1) translateZ(0) rotateY(30deg);
   }
 }
