@@ -83,7 +83,7 @@ p {
 
 .page article {
   width: 80%;
-  min-height: calc(100% - 8em);
+  min-height: -webkit-calc(100% - 8em);
   padding: 1em 2em;
   margin: 3em auto;
   background: #fff;
