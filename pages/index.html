@@ -7,9 +7,9 @@
   <title>学习HTML/CSS &middot; kejun</title>
   <base target="_blank">
   <link rel="apple-touch-icon-precomposed" href="">
-  <link rel="stylesheet" href="static/css/prism.css" />
-  <link rel="stylesheet" href="static/css/slides.css" />
-  <style>
+  <link rel="stylesheet" href="static/css/prism.css"  media="screen"/>
+  <link rel="stylesheet" href="static/css/slides.css" media="screen" />
+  <style media="screen">
   body { background:url(static/pics/bg.jpg); }
   .cover { position: relative; }
   .cover {
@@ -28,6 +28,10 @@
     vertical-align: top;
   }
   </style>
+  <style media="print">
+   .no-support, iframe { display: none; }
+   .page { margin-bottom: 2em; }
+  </style>
 </head>
 <body>
 <h1>学习HTML/CSS &middot; kejun</h1>
@@ -45,16 +49,6 @@
   </div>
   </article>
   </div>
-
-  <div class="page">
-    <article>
-    <h2>HTML和CSS出双入对的关系</h2>
-    <div class="pic cover">
-      <img src="static/pics/cover.jpg" alt="" />
-    </div>
-    </article>
-  </div>
-
 
   <div class="page">
   <article>
@@ -291,7 +285,25 @@ A block formatting context is a part of a visual CSS rendering of a Web page. It
     <article>
       <h2>CSS规则的优先级关系</h2>
       <p>优先级可以精确计算
-      <div class="pic">
+      <pre class="col">
+      <code class="language-markup">
+      div.conent p { color:#000; }
+      
+
+
+      #db-site-note p { color:#999; }
+
+
+
+      &lt;div style="color:red"&gt;
+        &lt;p>正文&lt;/p>
+      &lt;/div>
+      
+
+      p { color:#000 !important; }
+      </code>
+      </pre>
+      <div class="pic col">
       <img src="static/pics/figure-5.png" alt="" />
       </div>
       <p>同值，按规则定义的先后顺序。
