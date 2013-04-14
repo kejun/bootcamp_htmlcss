@@ -94,11 +94,20 @@ doc.on('keyup', function(e) {
   e.preventDefault();
   if (('39,40,13,32,74,').indexOf(e.keyCode + ',') + 1) {
     next();
+  }
+  else if (('37,38,75,').indexOf(e.keyCode + ',') + 1) {
+    prev();
+  }
+})
+.on('mousedown', function(e) {
+  if (e.target.tagName === 'A') {
     return;
   }
-  if (('37,38,75,').indexOf(e.keyCode + ',') + 1) {
+  if (e.button === 0) {
+    next();
+  }
+  else if (e.button === 1) {
     prev();
-    return;
   }
 })
 .on('pagechange', function(e, num, direction) {

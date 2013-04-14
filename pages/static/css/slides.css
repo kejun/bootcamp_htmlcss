@@ -138,24 +138,28 @@ p {
 
 .next-slide-in {
   display: block;
+  overflow: hidden;
   -webkit-animation: next_slide_in .5s ease-out;
   -webkit-transform-origin:0 50%;
 }
 
 .next-slide-out {
   display: block;
+  overflow: hidden;
   -webkit-animation: next_slide_out .5s ease-out;
   -webkit-transform-origin:100% 50%;
 }
 
 .prev-slide-in {
   display: block;
+  overflow: hidden;
   -webkit-animation: prev_slide_in .5s ease-out;
   -webkit-transform-origin:100% 50%;
 }
 
 .prev-slide-out {
   display: block;
+  overflow: hidden;
   -webkit-animation: prev_slide_out .5s ease-out;
   -webkit-transform-origin:0 50%;
 }
