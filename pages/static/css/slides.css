@@ -167,7 +167,7 @@ p {
 
 @-webkit-keyframes next_slide_in {
   from {
-    -webkit-transform: translate(100%, 0) scale(1) translateZ(0) rotateY(30deg);
+    -webkit-transform: translate(100%, 0) scale(1) translateZ(0) rotateY(10deg);
     opacity: 0;
   }
   to {
@@ -182,7 +182,7 @@ p {
     opacity: 1;
   }
   to {
-    -webkit-transform: translate(-100%, 0) scale(1) translateZ(0) rotateY(-30deg);
+    -webkit-transform: translate(-100%, 0) scale(1) translateZ(0) rotateY(-10deg);
     opacity: 0;
   }
 }
@@ -191,7 +191,7 @@ p {
 
 @-webkit-keyframes prev_slide_in {
   from {
-    -webkit-transform: translate(-100%, 0) scale(1) translateZ(0) rotateY(-30deg);
+    -webkit-transform: translate(-100%, 0) scale(1) translateZ(0) rotateY(-10deg);
     opacity: 0;
   }
   to {
@@ -206,7 +206,7 @@ p {
     opacity: 1;
   }
   to {
-    -webkit-transform: translate(100%, 0) scale(1) translateZ(0) rotateY(30deg);
+    -webkit-transform: translate(100%, 0) scale(1) translateZ(0) rotateY(10deg);
     opacity: 0;
   }
 }
