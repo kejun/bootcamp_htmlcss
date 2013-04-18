@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>学习HTML/CSS &middot; kejun</title>
+  <base target="_blank">
+  <link rel="apple-touch-icon-precomposed" href="">
+  <link rel="stylesheet" href="static/css/prism.css"  media="screen"/>
+  <link rel="stylesheet" href="static/css/slides.css" media="screen" />
+  <style media="screen">
+  body { background:url(static/pics/bg.jpg); }
+  .cover { position: relative; }
+  .cover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(1) translateZ(0);
+  }
+  .page-boxes p {
+    margin: 10px;
+    padding: 10px;
+    background: #edf4ed;
+  }
+  .col {
+    display: inline-block;
+    vertical-align: top;
+  }
+  </style>
+  <style media="print">
+   .no-support, iframe { display: none; }
+   .page { margin-bottom: 2em; }
+  </style>
+</head>
+<body>
+<h1>学习HTML/CSS &middot; kejun</h1>
+
+  <div class="page page-cover">
+  <article>
+  <div class="page-cover-content">
+  <div class="title">
+     学习HTML/CSS
+  </div>
+  <div class="sub-title">
+     新兵训练营 &middot;  2013.4
+  </div>
+  <div class="author">Kejun</div>
+  </div>
+  </article>
+  </div>
+
+  <div class="page">
+  <article>
+    <h2>内容</h2>
+    <ul class="list">
+      <li>必备知识
+        <ul>
+          <li>概述</li>
+          <li>CSS2.1 盒模型</li>
+          <li>CSS2.1 定位原理</li>
+          <li>CSS的层叠和优先级</li>
+          <li>标签分类和嵌套规则</li>
+          <li>常见问题</li>
+        </ul>
+      </li>
+      <li>练习题</li>
+    </ul>
+  </article>
+  </div>
+
+
+  <div class="page">
+    <article>
+       <h2>概述</h2>
+      <ul class="list">
+        <li>HyperText Markup Language - 标记(标记什么)</li>
+        <li>Cascading Style Sheets - 层叠(多层、叠加)、样式(包括什么)</li>
+        <li>标准集合(W3C、WHATWG)。一堆标签＋一堆规则</li>
+        <li>无逻辑</li>
+        <li>语法简单、强调语义</li>
+        <li><mark>内容、结构、样式分离</mark></li>
+        <li><mark>渐进增强、优雅退化</mark></li>
+      </ul>
+    </article>
+  </div>
+
+
+
+  <div class="page">
+    <article>
+       <h2>文档结构</h2>
+     <div class="pic">
+       <img src="static/pics/screen_shot.2.png" alt="" />
+     </div> 
+    </article>
+  </div>
+
+
+
+  <div class="page page-boxes">
+  <article>
+    <h2>盒 - Boxes</h2>
+      <p>盒，简单理解为所有被标签标记的元素，标签之外的看作匿名box。</p>
+      <p>盒模型，box的尺寸规格</p>
+      <p>决定如何渲染，一是计算尺寸(宽/高)，二是如何定位</p>
+      <p>4区域：内容区域、内边距(padding)、边框(border)、外边距(margin)</p>
+      <pre class="col">
+      <code class="language-css">
+      p { margin: 10px; }
+      p { margin: 10px 20px; }
+      p { margin: 10px 20px 5px; }
+      p { 
+          width: 200px;
+          padding: 20px;
+          border: 1px solid #eee;
+          border-width: 1px 0;
+          border-style: solid none dashed;
+          margin: 10px 20px 5px 20px;
+      }
+      </code>
+      </pre>
+  <div class="pic col">
+    <img src="http://www.w3.org/TR/CSS2/images/boxdim.png" alt="" />
+  </div>
+  </article>
+  </div>
+
+
+  
+   <div class="page">
+     <article>
+       <h2>CSS2.1 定位</h2>
+       <ul class="list">
+         <li>常规流(Normal Flow): 
+             <ol>
+              <li>static position
+              <li>relative position
+             </ol>
+         <li>浮动(Float)
+         <li>绝对定位(Absolute Position): 
+             <ol>
+              <li>absolute position 
+              <li>fixed position
+             </ol>
+         <li>三种定位之间不能混用
+       </ul>
+     </article>
+   </div>
+
+
+   <div class="page">
+     <article>
+     <h2>Normal Flow</h2>
+       <p>block box(块级元素): width/height属性有效，不指定宽自动充满父容器(父级block元素)
+       <p>inline box(行内元素): width/height属性无效，宽度由实际内容绝定，遇到父容器边缘折行（连续字符例外，word-wrap:break-word）
+       <p>block格式化：1. 垂直、顺序布局 2. 折叠边距特性
+     <div class="pic">
+       <img src="static/pics/figure-0.png" alt="" />
+     </div>
+       <p>inline格式化：1. 水平方向、顺序布局 2. 垂直方向的padding/margin无效 
+       <p>inline-block box: 内部按block格式化，外部按inline格式化 
+       <p>static position - 包括block格式化/inline格式化，left/right/top/bottom/z-index属性无效
+       <p>relative position - 包括block格式化/inline格式化，left/right/top/bottom/z-index属性有效
+     <div class="pic">
+       <img src="static/pics/figure-1.png" alt="" />
+     </div>
+     </article>
+   </div>
+
+
+
+   <div class="page">
+     <article>
+     <h2>Float</h2>
+     <p>left/right/none。脱离当前文档流，定位到父容器的边缘，或另一个float box的边缘
+     <p>不定宽情况下，实际宽度由内容决定
+     <p>父容器水平方向空间不足时，向下移动直到可以放下
+     <p>文档流中的inline box环绕float box 
+     <p>会和文档流中的block box重叠。用clear:both|left|right避免重叠
+     <p>float会形成一个新的block formatting context(块格式化上下文，后面介绍)
+     <p>float不会超出所在BFC的范围，也不会和其它BFC重叠
+     <p>left/right/top/bottom/z-index属性无效
+     <div class="pic">
+       <img src="static/pics/figure-2.png" alt="" />
+     </div>
+     </article>
+   </div>
+
+
+
+   <div class="page">
+     <article>
+     <h2>Absolute Position</h2>
+     <p>脱离当前文档流。浮在其它元素上，z-index决定z轴上的关系
+     <p>不定宽情况下，实际宽度由内容决定
+     <p>float会形成一个新的block formatting context
+     <p>left/right/top/bottom/z-index属性有效
+     <p>left/right/top/bottom是距最近的absolute/relative定位的父级元素的值
+     <p>fixed position是相对viewport定位
+     <div class="pic">
+       <img src="static/pics/figure-3.png" alt="" />
+     </div>
+     <p>z-index，对relative/absolute/fixed有效。默认值auto。同值后面高于前面。可正可负。
+     <div class="pic">
+       <img src="static/pics/figure-4.png" alt="" />
+     </div>
+     <p>事件不能穿过覆盖层。(IE例外) 可用pointer-events:none改变
+     </article>
+   </div>
+
+
+  
+   <div class="page">
+     <article>
+     <h2>Block Formatting Context - 块级格式化上下文</h2>
+     <p> MDC定义：
+A block formatting context is a part of a visual CSS rendering of a Web page. It is the region in which the layout of block boxes occurs and in which floats interact with each other.
+     <p>一个BFC是CSS可视化渲染页面的一部分，它是把一组块级box和浮动元素放在一起布局的区域。
+     <h3>特性：</h3>
+     <ol class="list-1">
+     <li>不存在折叠边距
+     <li>浮动元素不会超出它的范围
+     <li>不会跟其它浮动元素重叠
+     </ol>
+
+     <h3>形成新的BFC：</h3>
+     <ol class="list-1">
+     <li>float属性不为none
+     <li>overflow属性不为visible
+     <li>display属性是table-cell/table-caption/inline-block
+     <li>position属性不为static/relative
+     </ol>
+
+     <p>IE6/7没有BFC的概念。IE6/7的hasLayout与BFC类似。通常用zoom:1触发。
+     </article>
+   </div>
+
+
+
+  <div class="page">
+    <article>
+    <h2>三列布局</h2>
+    <iframe src="http://dabblet.com/gist/5343132" frameborder="0" width="100%" height="560"></iframe>
+    </article>
+  </div>
+
+
+  <div class="page">
+    <article>
+      <h2>层叠和继承</h2>
+      <pre class="col">
+      <code class="language-css">.list li {
+        margin: 10px 0 0 0;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .list-member li {
+        font-size: 12px;
+      }
+      </code>
+      </pre>
+      <pre class="col">
+      <code class="language-markup">&lt;div class="list list-member"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Member ID1
+          &lt;li&gt;Member ID2
+          &lt;li&gt;Member ID3
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      </code>
+      </pre>
+      <p>根据CSS优先级将两条规则加在一起。实际为：
+      <pre class="col">
+      <code class="language-css">
+        margin: 10px 0 0 0;
+        font-size: 12px;
+        color: #666;
+      </code>
+      </pre>
+      
+      <p>继承，子元素可以继承父级的属性:
+      <ul class="list-1">
+        <li>文本样式: font-family/font-size/font-style/font-variant/font-weight/letter-spacing/line-height/text-align/text-indent/text-transform/word-spacing</li>
+        <li>列表样式: list-style-image/list-style-position/list-style-type/list-style</li>
+        <li>颜色: color</li>
+        <li>字号是相对值：如font-size:80%，会计算相对值</li>
+      </ul>
+    </article>
+  </div>
+
+
+
+  <div class="page">
+    <article>
+      <h2>CSS规则的优先级关系</h2>
+      <p>优先级可以精确计算
+      <pre class="col">
+      <code class="language-markup">
+      div.conent p { color:#000; }
+      
+
+
+      #db-site-note p { color:#999; }
+
+
+
+      &lt;div style="color:red"&gt;
+        &lt;p>正文&lt;/p>
+      &lt;/div>
+      
+
+      p { color:#000 !important; }
+      </code>
+      </pre>
+      <div class="pic col">
+      <img src="static/pics/figure-5.png" alt="" />
+      </div>
+      <p>同值，按规则定义的先后顺序。
+      <pre class="col">
+      <code class="language-css">.list-member li {
+        font-size: 12px;
+      }
+
+      .list li {
+        margin: 10px 0 0 0;
+        font-size: 14px;
+        color: #666;
+      }
+      </code>
+      </pre>
+      <pre class="col">
+      <code class="language-markup">&lt;div class="list list-member"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Member ID1
+          &lt;li&gt;Member ID2
+          &lt;li&gt;Member ID3
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      </code>
+      </pre>
+     <p>避免用!important和标签的style属性
+    </article>
+  </div>
+
+   
+
+  <div class="page">
+    <article>
+      <h2>标签使用</h2>
+      <div>
+      <ul class="list-1">
+        <li>按语义使用</li>
+        <li>嵌套规则</li>
+        <li>结构的设计思路</li>
+      </ul>
+      参考: <a href="http://hikejun.com/work/qq/spec/html_reference.html">http://hikejun.com/work/qq/spec/html_reference.html</a>
+      </div>
+
+       <h3>理解结构设计 - 对信息结构的准确描述</h3>
+      <div class="pic col" style="width:40%;">
+      <img src="static/pics/screen_shot.3.png" alt="" />
+      </div>
+
+      <div class="pic col" style="width:50%;">
+      <img src="static/pics/screen_shot.4.png" alt="" />
+      </div>
+    </article>
+  </div>
+
+
+  <div class="page">
+  <article>
+    <h2>易犯错误</h2>
+    <ol class="list-1">
+     <li>单一使用标签。都用div
+     <li>标签的嵌套规则
+     <li>用&lt;br&gt;控制间距
+     <li>用&amp;nbsp;控制字间距
+     <li>爱用p标签
+     <li>样式直接写在标签的style属性上
+     <li>滥用float布局
+     <li>class/id的命名随意
+     <li>不注意选择器的效率
+     <li>不注意作用范围。如直接改div {...} 或 * {...}
+    </ol>
+  </article>
+  </div>
+
+
+
+  <div class="page">
+  <article>
+  <h2>练习题</h2>
+  <p><a href="http://dabblet.com/gist/5185295">http://dabblet.com/gist/5185295</a>
+  <p>展现效果：
+  <div class="pic">
+  <img src="static/pics/screen_shot_1.png">
+  </div>
+  <p>HTML内容：
+  <pre data-src="example_html_1.html"></pre>
+  <p>还缺什么？
+  <p style="color:#fff;">HTML结构设计、CSS样式
+  </article>
+  </div>
+
+  <div class="no-support">
+    Sorry! 暂不支持你的浏览器，请用Chrome打开...
+  </div>
+  <script src="static/js/prism.js"></script>
+  <script src="static/js/zepto.js"></script>
+  <script src="static/js/slides.js"></script>
+</body>
+</html>
