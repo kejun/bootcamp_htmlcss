@@ -110,10 +110,10 @@ doc.on('keyup', function(e) {
     prev();
   }
 })
-.swipeRight(function() {
+.swipeLeft(function() {
     next();
 })
-.swipeLeft(function() {
+.swipeRight(function() {
     prev();
 })
 .on('pagechange', function(e, num, direction) {
