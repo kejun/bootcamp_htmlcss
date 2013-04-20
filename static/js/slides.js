@@ -110,6 +110,12 @@ doc.on('keyup', function(e) {
     prev();
   }
 })
+.swipeRight(function() {
+    next();
+})
+.swipeLeft(function() {
+    prev();
+})
 .on('pagechange', function(e, num, direction) {
   show(num, direction);
   history.pushState(null, '第' + current_num + '页', makeURL(current_num));
