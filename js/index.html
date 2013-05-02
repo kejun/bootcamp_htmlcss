@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>Javascripta基础 &middot; kejun</title>
+  <base target="_blank">
+  <link rel="apple-touch-icon-precomposed" href="">
+  <link rel="stylesheet" href="../static/css/prism.css"  media="screen"/>
+  <link rel="stylesheet" href="../static/css/slides.css" media="screen" />
+  <style media="screen">
+  body { background:url(../static/pics/bg.jpg); }
+  .cover { position: relative; }
+  .cover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(1) translateZ(0);
+  }
+  .page-boxes p {
+    margin: 10px;
+    padding: 10px;
+    background: #edf4ed;
+  }
+  .col {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .list-1 ol p,
+  .list-1 ol li {
+    font-size: 1em;
+  }
+  </style>
+  <style media="print">
+   .no-support, iframe { display: none; }
+   .page { margin-bottom: 2em; }
+  </style>
+</head>
+<body>
+<h1>Javascripta基础 &middot; kejun</h1>
+
+  <div class="page page-cover">
+  <article>
+  <div class="page-cover-content">
+  <div class="title">
+     Javascripta基础
+  </div>
+  <div class="sub-title">
+     新兵训练营 &middot;  2013.4
+  </div>
+  <div class="author">Kejun</div>
+  </div>
+  </article>
+  </div>
+
+  
+
+  <div class="page">
+  <article>
+  <h2>学习Javascript</h2>
+  <ul class="list-1">
+    <li>语言本身：
+      <ul>
+        <li>数据类型</li>
+        <li>变量</li>
+        <li>表达式和运算符</li>
+        <li>控制语句</li>
+        <li>Function*</li>
+        <li>闭包*</li>
+        <li>继承*</li>
+      </ul>
+    <li>语言之外：
+      <ul>
+        <li>DOM API
+        <li>DOM Event 
+        <li>BOM
+  </ul>
+  </article>
+  </div>
+
+
+  <div class="page">
+    <article>
+    <h2>数据类型</h2>
+    <p>原始类型(primitive type): Number, String, Boolean
+    <p>参考类型(reference type): Object(Function, Array, Date, RegExp)
+    <p>null, undefined
+    </article>
+  </div>
+
+
+  <div class="page">
+    <article>
+    <h2>数据类型的特点</h2>
+    <ol class="list-1">
+      <li>弱类型
+    <pre><code class="language-javascript">3 * '3'</code></pre>
+    <pre><code class="language-javascript">+ '3'</code></pre>
+    <pre><code class="language-javascript">+ new Date</code></pre>
+    <pre><code class="language-javascript">'000023'|0</code></pre>
+      <li>数值型是“double-precision 64-bit format IEEE 754 values”
+    <pre><code class="language-javascript">0.1 + 0.2</code></pre>
+      <li>一切皆为对象
+    <pre><code class="language-javascript">true.toString()</code></pre>
+    <pre><code class="language-javascript">(2).toString()</code></pre>
+    <pre><code class="language-javascript">'1,2,3,4'.split(',')</code></pre>
+      <li>0, "", NaN, null, undefined为false, 其它皆为true
+    <pre><code class="language-javascript">0 == ""</code></pre>
+    <pre><code class="language-javascript">!!""</code></pre>
+      <li>类型类型的特点
+    <pre><code class="language-javascript">
+    var o1 = {
+      a: 1
+    };
+
+    var o2 = o1;
+    console.log(o2.a);
+
+    o1.a = 2;
+    console.log(o2.a);
+    </code></pre>
+      <li>对象都是prototype-base继承
+    <pre><code class="language-javascript">
+     Object.prototype.newMethod = function() {
+       console.log('被污染了');
+     };
+     (2).newMethod();
+    </code></pre>
+    </ol>
+    </article>
+  </div>
+
+
+
+
+  <div class="page">
+    <article>
+    <h2>变量</h2>
+    <ul class="list-1">
+      <li>全局变量
+        <ol>
+          <li>皆是window的成员
+          <li>没用var声明的变量皆是全局变量
+          <li>页面unload时才被GC回收
+          <li>全局变量是evil
+        </ol>
+      <li>局部变量
+        <ol>
+          <li>定义在函数体内
+          <li>函数执行完后若未被其它对象引用侧会被GC回收
+        </ol>
+    </ul>
+    </article>
+  </div>
+
+
+
+
+  <div class="page">
+    <article>
+    <h2>变量的作用域 - Scope Chains</h2>
+    <ul class="list-1">
+      <li>影响执行效率
+      <li>它是实现Javascript动态特性的重要机制
+    </ul>
+    <div class="pic">
+      <a href="../static/pics/js.figure.1.png" target="_blank"><img src="../static/pics/js.figure.1.png" alt="" /></a>
+    </div>
+
+    <h3>输出结果分区是什么？</h3>
+    <div class="col">
+      <pre data-src="js1.js"></pre>
+    </div>
+&nbsp;
+&nbsp;
+&nbsp;
+    <div class="col">
+      <pre data-src="js2.js"></pre>
+    </div>
+    </article>
+  </div>
+
+
+
+
+  <div class="page">
+    <article>
+    <h2>下面代码的输出：</h2>
+      <pre data-src="js17.js"></pre>
+    </article>
+  </div>
+
+
+  <div class="page">
+    <article>
+    <h2>fixed：</h2>
+      <pre data-src="js18.js"></pre>
+    </article>
+  </div>
+
+
+
+
+  <div class="page">
+    <article>
+    <h2>函数 - Function</h2>
+    <ul class="list-1">
+      <li>声明型函数
+        <ol>
+          <li>有特定名字
+          <li>它位置要么在程序级的全局上下文上，要么在另一个函数体内
+          <li>一旦进执行上下文就被创建
+          <li>影响Variable Object
+          <pre data-src="js3.js"></pre>
+        </ol>
+      <li>表达式型函数
+        <ol>
+          <li>函数名字可选
+          <li>出现在表达式的位置上
+          <li>不影响Variable Object
+          <li>在代码执行阶段创建
+          <pre data-src="js4.js"></pre>
+          会输出什么？
+          <pre><code class="language-javascript">
+var foo = function _foo() {
+  console.log(foo == _foo);
+};
+
+_foo();
+foo();
+          </code></pre>
+        </ol>
+      <li>函名函数
+         <ol>
+           <li>做为对象出现在表达式位置上
+           <pre data-src="js5.js"></pre>
+           <li>用来避免全局变量
+           <pre data-src="js6.js"></pre>
+           <li>作为参数
+           <pre data-src="js7.js"></pre>
+           <li>闭包
+           <pre data-src="js8.js"></pre>
+         </ol>
+      <li>函数也是对象
+      <pre data-src="js9.js"></pre>
+      <li>函数默认的属性和方法
+        <ol>
+          <li>属性：name, length, prototype
+          <li>方法：call(scope, arg1, arg2, ...), apply(scope, [arg1, arg2,...])
+      , toString(), valueOf()
+        </ol>
+    </ul>
+    </article>
+  </div>
+
+
+
+  <div class="page">
+    <article>
+    <h2>对象 - Object</h2>
+    <ul class="list-1">
+      <li>JS没有类的概念。一切都是对象。
+      <li>JS的动态特性，对象的属性和方法可以随时添加、修改和删除
+      <li>对象可以视为包含属性和方法的哈希表
+      <li>对象默认的属性和方法：
+         <ol>
+           <li>constructor - 指定它的构造器，用来描述如何创建一个指定的对象
+           <li>hasOwnProperty(name) - 判断是否为自己的属性
+           <li>propertyIsEnumerable(name) - 是否可用for-in枚举
+           <li>toString()
+           <li>valueOf()
+         </ol>
+    </ul>
+    <pre data-src="js10.js"></pre>
+    </article>
+  </div>
+
+
+  <div class="page">
+    <article>
+      <h2>如何创建对象</h2>
+     <ul class="list-1">
+       <li>直接用对象描述符号（object literal notation）
+       <pre><code class="language-javascript">var o = {};
+o.propertyName = 10;
+var array1 = [1,2,3,4];</code></pre>
+       <li>用new创建。调用指定的函数做为构造器。
+       <pre data-src="js11.js"></pre>
+       如果不写new会如何？
+       <pre><code class="language-javascript">var list2 = List();</code></pre>
+       省略new的写法：
+       <pre data-src="js12.js"></pre>
+       <li>用“工厂”函数创建。
+       <pre data-src="js13.js"></pre>
+     </ul>
+    </article>
+  </div>
+
+
+  
+
+  <div class="page">
+    <article>
+      <h2>this对象</h2>
+      <ul class="list-1">
+      <li>当一个函数在一个对象的上下文中被调用时，this指向这个对象
+      <li>当一个函数在外部被调用时，this指向window
+      <li>当一个函数作为构造器被调用时，this指向实例
+      <pre data-src="js16.js"></pre>
+      </ul>
+    </article>
+  </div>
+
+
+
+
+  <div class="page">
+    <article>
+      <h2>继承</h2>
+      <ul class="list-1">
+        <li>继承就是一个对象复用其它对象的属性和方法
+        <li>继承的方式：
+          <ol>
+            <li>基于原型链的继承（prototype）
+            <pre data-src="js15.js"></pre>
+            <div class="pic">
+            <img src="../static/pics/js.figure.2.png">
+            </div>
+            <p>原型上的成员被改动，将影响所有实例
+            <p>有查找时间
+            <p>节省内存
+            <li>对象伪装（Object Masquerading）
+            <pre data-src="js14.js"></pre>
+            <p>相当于copy，但是不会继承原型链上的属性和方法
+            <p>浪费内存
+            <li>混合方式
+            <p>属性继承用Object Masquerading，方法的继承用prototype
+          </ol>
+      </ul>
+    </article>
+  </div>
+
+
+
+  <div class="no-support">
+    Sorry! 暂不支持你的浏览器，请用Chrome打开...
+  </div>
+  <script src="../static/js/prism.js"></script>
+  <script src="../static/js/zepto.js"></script>
+  <script src="../static/js/slides.js"></script>
+</body>
+</html>

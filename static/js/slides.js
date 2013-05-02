@@ -99,22 +99,22 @@ doc.on('keyup', function(e) {
     prev();
   }
 })
-.on('mousedown', function(e) {
-  if (e.target.tagName === 'A') {
-    return;
-  }
-  if (e.button === 0) {
-    next();
-  }
-  else if (e.button === 1) {
-    prev();
-  }
-})
+//.on('mousedown', function(e) {
+//  if (e.target.tagName === 'A') {
+//    return;
+//  }
+//  if (e.button === 0) {
+//    next();
+//  }
+//  else if (e.button === 1) {
+//    prev();
+//  }
+//})
 .swipeLeft(function() {
-    next();
+      next();
 })
 .swipeRight(function() {
-    prev();
+      prev();
 })
 .on('pagechange', function(e, num, direction) {
   show(num, direction);
