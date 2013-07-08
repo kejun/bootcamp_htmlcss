@@ -1,0 +1,12 @@
+.mod {
+  margin-bottom: 30px
+  color: red
+}
+
+h1, .mod, {
+  color: yellow 
+}
+
+h1, .mod . title {
+  color: blue
+}

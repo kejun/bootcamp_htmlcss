@@ -92,7 +92,7 @@ function makeURL(num) {
 
 doc.on('keyup', function(e) {
   e.preventDefault();
-  if (('39,40,13,32,74,').indexOf(e.keyCode + ',') + 1) {
+  if (('39,40,32,74,').indexOf(e.keyCode + ',') + 1) {
     next();
   }
   else if (('37,38,75,').indexOf(e.keyCode + ',') + 1) {

@@ -27,6 +27,37 @@
     display: inline-block;
     vertical-align: top;
   }
+  .css-syntax {
+    position: relative;
+    padding: 20px;
+    font-size: 18px;
+  }
+  .css-syntax i {
+    font-style: normal;
+  }
+  .css-syntax:hover i:hover {
+    background: #f30;
+  }
+  .css-syntax:hover i {
+    padding: 3px 5px 4px;
+    border-radius: 10px;
+    background: #04f;
+    margin: 0 3px;
+  }
+  .css-syntax code {
+    display: inline-block;
+    background: #039;
+    line-height: 1;
+    padding: 6px 10px 8px;
+    border-radius: 10px;
+    color: #fff;
+  }
+
+  table {border-collapse: collapse; margin: 1.2em auto}
+  tr {vertical-align: baseline}
+  tbody tr {border-top: thin dotted}
+  th, td {text-align: center; padding: 0.3em 0.5em}
+  col:first-child + col {border: solid}
   </style>
   <style media="print">
    .no-support, iframe { display: none; }
@@ -77,10 +108,11 @@
         <li>HyperText Markup Language - 标记(标记什么)</li>
         <li>Cascading Style Sheets - 层叠(多层、叠加)、样式(包括什么)</li>
         <li>标准集合(W3C、WHATWG)。一堆标签＋一堆规则</li>
-        <li>无逻辑</li>
-        <li>语法简单、强调语义</li>
+        <li>弱逻辑</li>
+        <li>语法简单、强调语义、强调"三观"</li>
         <li><mark>内容、结构、样式分离</mark></li>
-        <li><mark>渐进增强、优雅退化</mark></li>
+        <li><mark>渐进增强</mark></li>
+        <li><mark>优雅退化</mark></li>
       </ul>
     </article>
   </div>
@@ -89,13 +121,175 @@
 
   <div class="page">
     <article>
-       <h2>文档结构</h2>
+     <h2>文档结构</h2>
      <div class="pic">
        <img src="static/pics/screen_shot.2.png" alt="" />
      </div> 
     </article>
   </div>
 
+
+
+  <div class="page">
+    <article>
+     <h2>认识CSS</h2>
+<p>回顾历史，CSS1于1996.12.17发正式版，它是为辅助HTML的展现效果而生的。
+<p>1998.5.12，CSS2发正式版。随后发修订版CSS2.1，纠正了CSS2中的一些错误。注意从CSS2起，CSS的作用就不是辅助展现了，变为全全负责展现。
+<p>Cascading Style Sheets - 层叠(多层、叠加)、样式(包括什么)
+<p><a href="http://www.w3.org/TR/CSS2/" target="_blank">http://www.w3.org/TR/CSS2/</a>
+<div class="list-1">
+<ul>
+<li>基本语法 *
+<li>选择器 *
+<li>属性值、层叠、继承 *
+<li>Box model *
+<li>Visual formatting model *
+<li>显示控制(visual effects)
+<li>文本和字体
+<li>颜色和背景
+<li>生成内容
+<li>媒体类型
+</ul>
+</div>
+    </article>
+  </div>
+
+
+<div class="page">
+    <article>
+       <h2>重新认识CSS语法</h2>
+     <div class="css-syntax">
+<code><i>.mod</i></code> <code><i>{</i>
+  <i>margin-bottom</i><i>:</i><i>30px</i><i>;</i>
+  <i>color</i><i>:</i><i>#666</i>
+<i>}</i></code>
+     </div>
+<ul class="list-1">
+<li>一条rule: 选择器 { 属性名: 属性值; } (声明体)
+<li>选择器: 
+<br>1. ID选择器 #xxx
+<br>2. 类选择器 .xxx
+<br>3. 标签选择器 div 
+<br>4. 属性选择器 [name], [name="xxx"], [name~='xxx'], ... 
+<br>5. 后继(Descendant)选择器 #xxx .xxx
+<br>6. 子选择器 #xxx > .xxx
+<br>7. 同级选择器 .xxx + .xx1, .xxx ~ .xx1
+<br>8. 伪类选择器 .xxx:hover
+<br>匹配顺序是从右向左: 想一想怎么写效率最高？
+<br>参考: <a href="http://www.w3.org/TR/CSS/#selectors" target="_blank">CSS的选择器</a>
+<br>思考题: 标题前面的内容是红色。
+<iframe width="100%" height="200" src="http://dabblet.com/gist/5581906" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<li>命名: 
+<pre>
+h   [0-9a-f]
+nonascii  [\240-\377]
+unicode   \\{h}{1,6}(\r\n|[ \t\r\n\f])?
+escape    {unicode}|\\[^\r\n\f0-9a-f]
+nmstart   [_a-z]|{nonascii}|{escape}
+nmchar    [_a-z0-9-]|{nonascii}|{escape}
+</pre>
+    <br>1. 连接符-和_: 下划线在CSS1(1996), CSS2(1998)是非法的。CSS2.1(2001)变成合法的
+    <br>2. ID和类名区分大小写。标签名不区分大小写。统一小写
+    <br>3. CSS2以后命名支持Unicode
+<pre><code class="language-markup">&lt;div class="I❤Douban">content&lt;/div>
+&lt;div class="克军">content&lt;/div>
+</code></pre>
+    <br>4. 不能用数字、双中划线开头
+<li>错误处理: 忽略无效，最近闭合
+<br>.mod的颜色？h1的颜色？
+<pre data-src="sample_css_1.css" class="language-css"></pre>
+<li> AT-Rules:
+     <div class="css-syntax">
+<code><i>@media print</i></code> <code><i>{</i>
+<i>.mod</i> <i>{</i>
+  <i>margin-bottom</i><i>:</i><i>20pt</i><i>;</i>
+<i>}</i>
+<i>}</i></code>
+     </div>
+<p>@charset, @document, @font-face, @import, @keyframes, @media, @page, @supports
+</ul>
+    </article>
+  </div>
+
+<div class="page">
+<article>
+<h2>值和单位</h2>
+<ul class="list-1">
+<li>值:
+<pre><code class="language-css">position: absolute;
+content: "\0020";
+width: 590px;
+border: none;
+background:red url(http://img3.douban.com/pics/blank.gif) no-repeat 0 0;
+height:90%;
+line-height: 1.62;
+border-left:3px solid #eee;
+</code></pre>
+
+<li>单位：
+<table><colgroup><col><col><col><col>
+    </colgroup><thead>
+     <tr>
+      <th>
+      </th><th>Rec­om­mended
+      </th><th>Oc­ca­sional use
+      </th><th>Not rec­om­mended
+    </th></tr></thead><tbody>
+     <tr>
+      <th>Screen
+      </th><td>em, px, %
+      </td><td>ex
+      </td><td>pt, cm, mm, in, pc
+     </td></tr><tr>
+      <th>Print
+      </th><td>em, cm, mm, in, pt, pc, %
+      </td><td>px, ex
+      </td><td>
+   </td></tr></tbody></table>
+</ul>
+<p>绝对单位:
+em, cm, mm, in, pt, pc, px
+<p>相对单位:
+%, em, ex, (ch, rem, vw, vh, vmin, vmax)
+<table class="data">
+   <caption>Informative Summary of Relative Units</caption>
+   <thead>
+    <tr>
+     <th>unit
+     </th><th>relative to
+   </th></tr></thead><tbody>
+    <tr>
+     <td>‘em’
+     </td><td>font size of the element
+    </td></tr><tr>
+     <td>‘ex’
+     </td><td><i>x-height</i> of the element's font
+    </td></tr><tr>
+     <td>‘ch’
+     </td><td>width of the "0" (ZERO, U+0030) glyph in the element's font
+    </td></tr><tr>
+     <td>‘rem’
+     </td><td>font size of the root element
+    </td></tr><tr>
+     <td>‘vw’
+     </td><td>1% of viewport's width
+    </td></tr><tr>
+     <td>‘vh’
+     </td><td>1% viewport's height
+    </td></tr><tr>
+     <td>‘vmin’
+     </td><td>1% of viewport's smaller dimension
+    </td></tr><tr>
+     <td>‘vmax’
+     </td><td>1% of viewport's larger dimension
+  </td></tr></tbody></table>
+<p>算术题：
+<pre><code class="language-css">body { font-size:14px; }
+h1 { font-size:1em;width:50em; }
+h1 p { font-size:2em;width:50em; }
+</code></pre>
+</article>
+</div>
 
 
   <div class="page page-boxes">
@@ -210,6 +404,15 @@
    </div>
 
 
+   <div class="page">
+     <article>
+     <h2>练习题：水平垂直居中</h2>
+     <iframe width="100%" height="500" src="http://dabblet.com/gist/5947115" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+     <a href="http://dabblet.com/gist/5947115" target="_blank">dabblet.com/gist/5947115</a>
+     </article>
+   </div>
+
+
   
    <div class="page">
      <article>
@@ -242,6 +445,7 @@ A block formatting context is a part of a visual CSS rendering of a Web page. It
     <article>
     <h2>三列布局</h2>
     <iframe src="http://dabblet.com/gist/5343132" frameborder="0" width="100%" height="560"></iframe>
+    <a href="http://dabblet.com/gist/5343132" target="_blank">http://dabblet.com/gist/5343132</a>
     </article>
   </div>
 
@@ -272,6 +476,8 @@ A block formatting context is a part of a visual CSS rendering of a Web page. It
       </code>
       </pre>
       <p>根据CSS优先级将两条规则加在一起。实际为：
+      <button onclick="document.querySelector('#code-anwser1').style.display='block'">计算结果</button>
+      <div id="code-anwser1" style="display:none;">
       <pre class="col">
       <code class="language-css">
         margin: 10px 0 0 0;
@@ -279,6 +485,7 @@ A block formatting context is a part of a visual CSS rendering of a Web page. It
         color: #666;
       </code>
       </pre>
+      </div>
       
       <p>继承，子元素可以继承父级的属性:
       <ul class="list-1">
